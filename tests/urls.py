@@ -1,14 +1,15 @@
 from __future__ import unicode_literals
-from django.conf.urls import patterns, url, include
+from django.urls import path, include
+from django.views.generic import TemplateView
 
+from . import views, always_allow_views
 
-urlpatterns = patterns(
-    '',
-    url(r'^invited-only/$', 'tests.views.invited_only', name='invited_only'),
-    url(r'^always-allow/$', 'tests.views.always_allow', name='always_allow'),
-    url(r'^always-allow-module/$', 'tests.always_allow_views.allowed',
-        name='always_allow_module'),
-    url(r'^not-allowed/$', 'tests.views.rejection', name='rejection'),
-    url(r'^hunger/', include('hunger.urls')),
-    url(r'^accounts/', include('django.contrib.auth.urls'))
+urlpatterns = (
+    path('invited-only/', views.invited_only, name='invited_only'),
+    path('always-allow/', views.always_allow, name='always_allow'),
+    path('always-allow-module/', always_allow_views.allowed, name='always_allow_module'),
+    path('not-allowed/', views.rejection, name='rejection'),
+    path('hunger/', include('django_hunger2.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/profile/', TemplateView.as_view(template_name='profile.html'), name='profile'),
 )

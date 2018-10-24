@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django import forms
-from hunger.models import Invitation, InvitationCode
+from django_hunger2.models import Invitation, InvitationCode
 
 
 class InviteSendForm(forms.ModelForm):
