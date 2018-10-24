@@ -25,16 +25,16 @@ except ImportError:
     INSTALL_REQUIRES.append('importlib')
 
 TESTS_REQUIRE = [
-    'Django>=1.3',
+    'Django>=2.0',
 ]
 
 setup(
-    name='django-hunger',
-    version='2.1.3.dev0',
+    name='django-hunger2',
+    version='2.2.0',
     packages=find_packages(exclude=['tests', 'example']),
     author='Joshua Karjala-Svenden',
     author_email='joshua@fluxuries.com',
-    url='https://github.com/joshuakarjala/django-hunger/',
+    url='https://github.com/joshuakarjala/django-django_hunger2/',
     license='MIT',
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,

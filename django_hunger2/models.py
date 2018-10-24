@@ -5,15 +5,15 @@ import string
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from hunger.utils import setting
+from django_hunger2.utils import setting
 
 User = settings.AUTH_USER_MODEL
 
 
 class Invitation(models.Model):
-    user = models.ForeignKey(User, blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     email = models.EmailField(_('Email'), blank=True, null=True)
-    code = models.ForeignKey('InvitationCode', blank=True, null=True)
+    code = models.ForeignKey('InvitationCode', blank=True, null=True, on_delete=models.PROTECT)
     used = models.DateTimeField(_('Used'), blank=True, null=True)
     invited = models.DateTimeField(_('Invited'), blank=True, null=True)
     created = models.DateTimeField(_('Created'), auto_now_add=True)
@@ -47,14 +47,10 @@ def send_invitation(invitation, **kwargs):
 class InvitationCode(models.Model):
     code = models.CharField(_('Invitation code'), max_length=30, unique=True)
     private = models.BooleanField(default=True)
-    max_invites = models.PositiveIntegerField(
-        _('Max number of invitations'), default=1)
-    num_invites = models.PositiveIntegerField(
-        _('Remaining invitations'), default=1)
-    invited_users = models.ManyToManyField(
-        User, related_name='invitations', through='Invitation')
-    owner = models.ForeignKey(User, related_name='created_invitations',
-                              blank=True, null=True)
+    max_invites = models.PositiveIntegerField(_('Max number of invitations'), default=1)
+    num_invites = models.PositiveIntegerField(_('Remaining invitations'), default=1)
+    invited_users = models.ManyToManyField(User, related_name='invitations', through='Invitation')
+    owner = models.ForeignKey(User, related_name='created_invitations', blank=True, null=True, on_delete=models.PROTECT)
 
     def __unicode__(self):
         return self.code

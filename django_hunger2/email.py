@@ -2,10 +2,11 @@ from __future__ import unicode_literals
 import os.path
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
-from django.core.urlresolvers import reverse
 from django.template.loader import get_template
 from django.template import RequestContext
-from hunger.utils import setting
+from django.urls import reverse
+
+from django_hunger2.utils import setting
 
 try:
     from templated_email import send_templated_mail
@@ -20,15 +21,13 @@ def beta_invite(email, request, code=None, **kwargs):
     Invitation URL is added to the context, so it can be rendered with standard
     django template engine.
     """
-    context_dict = kwargs.copy()
+    context = kwargs.copy()
     if code:
         invite_url = request.build_absolute_uri(
             reverse('hunger-verify', args=[code]))
     else:
         invite_url = setting('HUNGER_VERIFIED_REDIRECT')
-    context_dict.setdefault('invite_url', invite_url)
-
-    context = RequestContext(request, context_dict)
+        context.setdefault('invite_url', invite_url)
 
     templates_folder = setting('HUNGER_EMAIL_TEMPLATES_DIR')
     templates_folder = os.path.join(templates_folder, '')
@@ -44,7 +43,7 @@ def beta_invite(email, request, code=None, **kwargs):
             template_name='invite_email',
             from_email=from_email,
             recipient_list=[email],
-            context=context_dict,
+            context=context,
             template_dir=templates_folder,
             file_extension=file_extension,
         )

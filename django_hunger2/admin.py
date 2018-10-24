@@ -3,9 +3,9 @@ import csv
 from datetime import datetime
 from django.contrib import admin
 from django.http import HttpResponse
-from hunger.models import InvitationCode, Invitation
-from hunger.utils import now
-from hunger.forms import InvitationCodeAdminForm
+from django_hunger2.models import InvitationCode, Invitation
+from django_hunger2.utils import now
+from django_hunger2.forms import InvitationCodeAdminForm
 
 CSV_DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 

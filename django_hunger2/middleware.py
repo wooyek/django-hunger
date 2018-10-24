@@ -1,14 +1,17 @@
 from __future__ import unicode_literals
+
+from django.urls import reverse
 from django.utils import six
 from django.conf import settings
-from django.core.urlresolvers import reverse, resolve
 from django.shortcuts import redirect
 from django.db.models import Q
-from hunger.models import InvitationCode, Invitation
-from hunger.utils import setting, now
+from django.utils.deprecation import MiddlewareMixin
+
+from django_hunger2.models import InvitationCode, Invitation
+from django_hunger2.utils import setting, now
 
 
-class BetaMiddleware(object):
+class BetaMiddleware(MiddlewareMixin):
     """
     Add this to your ``MIDDLEWARE_CLASSES`` make all views except for
     those in the account application require that a user be logged in.
@@ -30,19 +33,20 @@ class BetaMiddleware(object):
     ``HUNGER_ALWAYS_ALLOW_MODULES``
         A list of modules that should always pass through.  All
         views in ``django.contrib.auth.views``, ``django.views.static``
-        and ``hunger.views`` will pass through.
+        and ``django_hunger2.views`` will pass through.
 
     ``HUNGER_REDIRECT``
         The redirect when not in beta.
     """
 
-    def __init__(self):
+    def __init__(self, get_response):
         self.enable_beta = setting('HUNGER_ENABLE')
 
         self.always_allow_views = setting('HUNGER_ALWAYS_ALLOW_VIEWS')
         self.always_allow_modules = setting('HUNGER_ALWAYS_ALLOW_MODULES')
         self.redirect = setting('HUNGER_REDIRECT')
         self.allow_flatpages = setting('HUNGER_ALLOW_FLATPAGES')
+        super(BetaMiddleware, self).__init__(get_response)
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         if not self.enable_beta:
@@ -59,10 +63,10 @@ class BetaMiddleware(object):
                                'django.views.static',
                                'django.contrib.staticfiles.views']
 
-        # All hunger views, except NotBetaView, are off limits until in beta
-        whitelisted_views = ['hunger.views.NotBetaView',
-                             'hunger.views.verify_invite',
-                             'hunger.views.InvalidView']
+        # All django_hunger2 views, except NotBetaView, are off limits until in beta
+        whitelisted_views = ['django_hunger2.views.NotBetaView',
+                             'django_hunger2.views.verify_invite',
+                             'django_hunger2.views.InvalidView']
 
         short_name = view_func.__class__.__name__
         if short_name == 'function':
@@ -84,7 +88,7 @@ class BetaMiddleware(object):
                 view_name in whitelisted_views):
             return
 
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             # Ask anonymous user to log in if trying to access in-beta view
             # This is based on user_passes_test internal django function
             path = request.get_full_path()

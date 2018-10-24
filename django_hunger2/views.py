@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
-from hunger.models import InvitationCode
-from hunger.forms import InviteSendForm
-from hunger.utils import setting, now
+from django_hunger2.models import InvitationCode
+from django_hunger2.forms import InviteSendForm
+from django_hunger2.utils import setting, now
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
