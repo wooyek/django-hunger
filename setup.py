@@ -34,7 +34,7 @@ setup(
     packages=find_packages(exclude=['tests', 'example']),
     author='Joshua Karjala-Svenden',
     author_email='joshua@fluxuries.com',
-    url='https://github.com/joshuakarjala/django-hunger/',
+    url='https://github.com/joshuakarjala/django-django_hunger2/',
     license='MIT',
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,

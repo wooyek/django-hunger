@@ -6,7 +6,7 @@ from django.template.loader import get_template
 from django.template import RequestContext
 from django.urls import reverse
 
-from hunger.utils import setting
+from django_hunger2.utils import setting
 
 try:
     from templated_email import send_templated_mail

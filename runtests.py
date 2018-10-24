@@ -25,7 +25,7 @@ if not settings.configured:
             'django.contrib.sessions',
             'django.contrib.sites',
             'django.contrib.contenttypes',
-            'hunger',
+            'django_hunger2',
             'tests',
         ],
         ROOT_URLCONF='tests.urls',
@@ -59,7 +59,7 @@ if not settings.configured:
             'django.contrib.sessions.middleware.SessionMiddleware',
             'django.middleware.csrf.CsrfViewMiddleware',
             'django.contrib.auth.middleware.AuthenticationMiddleware',
-            'hunger.middleware.BetaMiddleware'
+            'django_hunger2.middleware.BetaMiddleware'
         ),
         HUNGER_REDIRECT='rejection',
         HUNGER_ALWAYS_ALLOW_VIEWS=[

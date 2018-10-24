@@ -9,7 +9,7 @@ urlpatterns = (
     path('always-allow/', views.always_allow, name='always_allow'),
     path('always-allow-module/', always_allow_views.allowed, name='always_allow_module'),
     path('not-allowed/', views.rejection, name='rejection'),
-    path('hunger/', include('hunger.urls')),
+    path('hunger/', include('django_hunger2.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/profile/', TemplateView.as_view(template_name='profile.html'), name='profile'),
 )

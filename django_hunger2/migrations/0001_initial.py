@@ -32,14 +32,14 @@ class Migration(migrations.Migration):
                 ('private', models.BooleanField(default=True)),
                 ('max_invites', models.PositiveIntegerField(default=1, verbose_name='Max number of invitations')),
                 ('num_invites', models.PositiveIntegerField(default=1, verbose_name='Remaining invitations')),
-                ('invited_users', models.ManyToManyField(related_name='invitations', through='hunger.Invitation', to=settings.AUTH_USER_MODEL)),
+                ('invited_users', models.ManyToManyField(related_name='invitations', through='django_hunger2.Invitation', to=settings.AUTH_USER_MODEL)),
                 ('owner', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name='created_invitations', to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AddField(
             model_name='invitation',
             name='code',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='hunger.InvitationCode'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='django_hunger2.InvitationCode'),
         ),
         migrations.AddField(
             model_name='invitation',

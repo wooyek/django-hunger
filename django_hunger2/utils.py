@@ -14,7 +14,7 @@ DEFAULT_SETTINGS = {
     'HUNGER_INVITE_SENT_REDIRECT': reverse_lazy('hunger-invite-sent'),
     'HUNGER_ALLOW_FLATPAGES': [],
     'HUNGER_EMAIL_TEMPLATES_DIR': 'hunger',
-    'HUNGER_EMAIL_INVITE_FUNCTION': 'hunger.email.beta_invite',
+    'HUNGER_EMAIL_INVITE_FUNCTION': 'django_hunger2.email.beta_invite',
 }
 
 

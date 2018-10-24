@@ -7,8 +7,8 @@ from django.shortcuts import redirect
 from django.db.models import Q
 from django.utils.deprecation import MiddlewareMixin
 
-from hunger.models import InvitationCode, Invitation
-from hunger.utils import setting, now
+from django_hunger2.models import InvitationCode, Invitation
+from django_hunger2.utils import setting, now
 
 
 class BetaMiddleware(MiddlewareMixin):
@@ -33,7 +33,7 @@ class BetaMiddleware(MiddlewareMixin):
     ``HUNGER_ALWAYS_ALLOW_MODULES``
         A list of modules that should always pass through.  All
         views in ``django.contrib.auth.views``, ``django.views.static``
-        and ``hunger.views`` will pass through.
+        and ``django_hunger2.views`` will pass through.
 
     ``HUNGER_REDIRECT``
         The redirect when not in beta.
@@ -63,10 +63,10 @@ class BetaMiddleware(MiddlewareMixin):
                                'django.views.static',
                                'django.contrib.staticfiles.views']
 
-        # All hunger views, except NotBetaView, are off limits until in beta
-        whitelisted_views = ['hunger.views.NotBetaView',
-                             'hunger.views.verify_invite',
-                             'hunger.views.InvalidView']
+        # All django_hunger2 views, except NotBetaView, are off limits until in beta
+        whitelisted_views = ['django_hunger2.views.NotBetaView',
+                             'django_hunger2.views.verify_invite',
+                             'django_hunger2.views.InvalidView']
 
         short_name = view_func.__class__.__name__
         if short_name == 'function':

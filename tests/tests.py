@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import resolve_url
 from django.test import TestCase
 
-from hunger.utils import setting, now
-from hunger.models import Invitation, InvitationCode
+from django_hunger2.utils import setting, now
+from django_hunger2.models import Invitation, InvitationCode
 
 from django.test.utils import override_settings
 

@@ -114,7 +114,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'hunger.middleware.BetaMiddleware',
+    'django_hunger2.middleware.BetaMiddleware',
 )
 
 ROOT_URLCONF = 'example.urls'
@@ -153,7 +153,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'registration',
-    'hunger',
+    'django_hunger2',
     'example',
 )
 

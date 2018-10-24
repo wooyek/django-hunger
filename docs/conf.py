@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# django-hunger documentation build configuration file, created by
+# django-django_hunger2 documentation build configuration file, created by
 # sphinx-quickstart on Fri Mar 30 18:57:24 2012.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -42,7 +42,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'django-hunger'
+project = u'django-django_hunger2'
 copyright = u'2013, Joshua Karjala, Simon Ye'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -50,7 +50,7 @@ copyright = u'2013, Joshua Karjala, Simon Ye'
 # built documents.
 #
 # The short X.Y version.
-version = pkg_resources.get_distribution('hunger').version
+version = pkg_resources.get_distribution('django_hunger2').version
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -185,7 +185,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'django-hunger.tex', u'django-hunger Documentation',
+  ('index', 'django-django_hunger2.tex', u'django-django_hunger2 Documentation',
    u'Joshua Karjala, Simon Ye', 'manual'),
 ]
 
@@ -215,7 +215,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'django-hunger', u'django-hunger Documentation',
+    ('index', 'django-django_hunger2', u'django-django_hunger2 Documentation',
      [u'Joshua Karjala, Simon Ye'], 1)
 ]
 
@@ -229,8 +229,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'django-hunger', u'django-hunger Documentation',
-   u'Joshua Karjala, Simon Ye', 'django-hunger', 'One line description of project.',
+  ('index', 'django-django_hunger2', u'django-django_hunger2 Documentation',
+   u'Joshua Karjala, Simon Ye', 'django-django_hunger2', 'One line description of project.',
    'Miscellaneous'),
 ]
 

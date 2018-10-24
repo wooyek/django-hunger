@@ -11,6 +11,6 @@ urlpatterns = (
     path('', include('django.contrib.auth.urls')),
     path('accounts/', include('registration.backends.default.urls')),
     path('', views.home, name='home'),
-    path('hunger/', include('hunger.urls')),
+    path('hunger/', include('django_hunger2.urls')),
     path('accounts/profile/', views.profile, name='profile'),
 )
