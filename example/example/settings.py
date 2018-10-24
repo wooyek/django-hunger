@@ -1,4 +1,7 @@
 # Django settings for example project.
+import pathlib
+
+BASE_DIR = pathlib.Path(__file__).parents[1]
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -80,12 +83,29 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'y#rmfqpl68yg!=!ue7^(y^^sdbfrph-p*$oc0398$m@ayff@c6'
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
+
+TEMPLATES = [
+    {
+        # https://docs.djangoproject.com/en/1.8/topics/templates/#django.template.backends.django.DjangoTemplates
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            str(BASE_DIR / 'example'/ 'templates'),
+        ],
+        # 'APP_DIRS': False, # APP_DIRS=True and loaders are conflicting
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ],
+        },
+    },
+]
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

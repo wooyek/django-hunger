@@ -1,14 +1,17 @@
 from __future__ import unicode_literals
+
+from django.urls import reverse
 from django.utils import six
 from django.conf import settings
-from django.core.urlresolvers import reverse, resolve
 from django.shortcuts import redirect
 from django.db.models import Q
+from django.utils.deprecation import MiddlewareMixin
+
 from hunger.models import InvitationCode, Invitation
 from hunger.utils import setting, now
 
 
-class BetaMiddleware(object):
+class BetaMiddleware(MiddlewareMixin):
     """
     Add this to your ``MIDDLEWARE_CLASSES`` make all views except for
     those in the account application require that a user be logged in.
@@ -36,13 +39,14 @@ class BetaMiddleware(object):
         The redirect when not in beta.
     """
 
-    def __init__(self):
+    def __init__(self, get_response):
         self.enable_beta = setting('HUNGER_ENABLE')
 
         self.always_allow_views = setting('HUNGER_ALWAYS_ALLOW_VIEWS')
         self.always_allow_modules = setting('HUNGER_ALWAYS_ALLOW_MODULES')
         self.redirect = setting('HUNGER_REDIRECT')
         self.allow_flatpages = setting('HUNGER_ALLOW_FLATPAGES')
+        super(BetaMiddleware, self).__init__(get_response)
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         if not self.enable_beta:
@@ -84,7 +88,7 @@ class BetaMiddleware(object):
                 view_name in whitelisted_views):
             return
 
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             # Ask anonymous user to log in if trying to access in-beta view
             # This is based on user_passes_test internal django function
             path = request.get_full_path()
