@@ -1,12 +1,13 @@
-Hunger
-======
+Django Hunger2
+==============
 
-.. image:: https://secure.travis-ci.org/joshuakarjala/django-hunger.png?branch=master
-   :target: http://travis-ci.org/joshuakarjala/django-hunger
+.. image:: https://secure.travis-ci.org/wooyek/django-hunger2.png?branch=master
+   :target: http://travis-ci.org/wooyek/django-hunger2
 
 Django-hunger provides a flexible private beta phase for Django
 projects.
 
+This is a fork for unsupported http://github.com/joshuakarjala/django-hunger app.
 
 Features and Design Decisions
 -----------------------------
